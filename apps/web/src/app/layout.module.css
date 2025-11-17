@@ -1,0 +1,46 @@
+.body {
+  background: #f4f6ff;
+  min-height: 100vh;
+}
+
+.shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #0e1e3d;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+}
+
+.nav a {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3a6ff8;
+  font-weight: 600;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

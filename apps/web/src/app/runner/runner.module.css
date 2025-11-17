@@ -1,0 +1,154 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #0e1e3d;
+}
+
+.helper {
+  color: #475569;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.summaryGrid article {
+  background: #fff;
+  border-radius: 24px;
+  padding: 20px;
+  border: 1px solid #dfe7ff;
+  box-shadow: 0 20px 40px rgba(4, 25, 55, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summaryGrid strong {
+  font-size: 1.8rem;
+  color: #0f172a;
+}
+
+.historyCard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.historyCard li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.sectionHeading h2 {
+  color: #0f172a;
+}
+
+.sectionHeading p {
+  color: #64748b;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid #e4ecff;
+  box-shadow: 0 25px 50px rgba(4, 25, 55, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+}
+
+.route {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.route strong {
+  color: #0e1e3d;
+}
+
+.arrow {
+  color: #cbd5f5;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  background: #3a6ff8;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.empty {
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px dashed #d6ddf8;
+  text-align: center;
+  color: #475569;
+}

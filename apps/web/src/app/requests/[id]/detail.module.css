@@ -1,0 +1,63 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.metaCard {
+  background: #fff;
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid #e4ecff;
+  box-shadow: 0 30px 60px rgba(4, 25, 55, 0.08);
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.metaGrid div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+}
+
+.value {
+  font-size: 1.1rem;
+  color: #0e1e3d;
+}
+
+.timeline {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid #e4ecff;
+}
+
+.timeline ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.timeline li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.breadcrumb {
+  color: #64748b;
+}

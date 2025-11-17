@@ -1,0 +1,30 @@
+{
+  "name": "campusdash",
+  "private": true,
+  "version": "0.1.0",
+  "description": "CampusDash monorepo",
+  "type": "module",
+  "packageManager": "npm@10.9.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "dev:web": "npm run dev --workspace @campusdash/web",
+    "dev:api": "npm run dev --workspace @campusdash/api",
+    "db:up": "docker compose -f infrastructure/docker-compose.yml up -d",
+    "db:down": "docker compose -f infrastructure/docker-compose.yml down",
+    "db:logs": "docker compose -f infrastructure/docker-compose.yml logs -f",
+    "db:migrate": "npm run prisma:migrate --workspace @campusdash/api",
+    "db:seed": "npm run db:seed --workspace @campusdash/api"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "turbo": "^2.1.3"
+  }
+}

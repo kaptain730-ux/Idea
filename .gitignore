@@ -1,0 +1,11 @@
+node_modules
+.next
+.env
+.env.*
+dist
+coverage
+*.log
+pnpm-lock.yaml
+yarn.lock
+apps/api/dist
+apps/api/prisma/migrations

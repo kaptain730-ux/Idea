@@ -1,0 +1,123 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header h1 {
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  color: #0e1e3d;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.actionLink {
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 1px solid #d6ddf8;
+  font-weight: 600;
+  color: #3a6ff8;
+}
+
+.actionPrimary {
+  background: #3a6ff8;
+  color: #fff;
+  border-color: #3a6ff8;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filterChip {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: #eef2ff;
+  color: #3a6ff8;
+  font-weight: 600;
+}
+
+.filterChipActive {
+  background: #3a6ff8;
+  color: #fff;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid #e4ecff;
+  box-shadow: 0 20px 40px rgba(4, 25, 55, 0.06);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardLabel {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.card h3 {
+  margin-top: 4px;
+  color: #0e1e3d;
+}
+
+.route {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.route strong {
+  color: #0e1e3d;
+}
+
+.arrow {
+  font-size: 1.2rem;
+  color: #94a3b8;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 48px;
+  border: 1px dashed #d6ddf8;
+  border-radius: 24px;
+  color: #475569;
+}

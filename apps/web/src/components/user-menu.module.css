@@ -1,0 +1,29 @@
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 16px;
+  border: 1px solid #d6ddf8;
+}
+
+.name {
+  font-weight: 600;
+  color: #0e1e3d;
+}
+
+.menu button {
+  border: none;
+  background: transparent;
+  color: #ef4444;
+  cursor: pointer;
+}
+
+.loginButton {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid #d6ddf8;
+  color: #3a6ff8;
+  font-weight: 600;
+}

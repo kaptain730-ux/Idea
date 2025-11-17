@@ -1,0 +1,174 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  STUDENT
+  RUNNER
+  STAFF
+  ADMIN
+  VENDOR
+}
+
+enum RequestStatus {
+  PENDING
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  INITIATED
+  SETTLED
+  FAILED
+}
+
+enum PaymentMethod {
+  WALLET
+  UPI
+  CASHLESS
+}
+
+model User {
+  id                String           @id @default(cuid())
+  name              String
+  email             String?          @unique
+  phone             String?          @unique
+  role              UserRole         @default(STUDENT)
+  rating            Float?           @default(0)
+  reliabilityScore  Float?           @default(0)
+  walletBalance     Decimal          @default(0)
+  createdAt         DateTime         @default(now())
+  requests          Request[]        @relation("RequestRequester")
+  assignedRequests  Request[]        @relation("RequestRunner")
+  runnerProfile     RunnerProfile?
+  walletTransactions WalletTransaction[]
+  payments          Payment[]        @relation("UserPayments")
+  disputesRaised    Dispute[]        @relation("UserDisputes")
+  runnerAssignments RunnerAssignment[] @relation("RunnerAssignments")
+}
+
+model RunnerProfile {
+  id             String   @id @default(cuid())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String   @unique
+  governmentId   String?
+  status         String   @default("pending")
+  dailyEarnings  Decimal  @default(0)
+  createdAt      DateTime @default(now())
+}
+
+model Location {
+  id        String   @id @default(cuid())
+  name      String
+  latitude  Float
+  longitude Float
+  type      String   @default("building")
+  requestsPickup Request[] @relation("LocationPickup")
+  requestsDrop   Request[] @relation("LocationDrop")
+}
+
+model Request {
+  id               String         @id @default(cuid())
+  requester        User           @relation("RequestRequester", fields: [requesterId], references: [id])
+  requesterId      String
+  runner           User?          @relation("RequestRunner", fields: [runnerId], references: [id])
+  runnerId         String?
+  pickupLocation   Location       @relation("LocationPickup", fields: [pickupLocationId], references: [id])
+  pickupLocationId String
+  dropLocation     Location       @relation("LocationDrop", fields: [dropLocationId], references: [id])
+  dropLocationId   String
+  taskType         String
+  status           RequestStatus  @default(PENDING)
+  preferredTime    DateTime?
+  instructions     String?
+  estimatedCost    Decimal?       @default(0)
+  actualCost       Decimal?       @default(0)
+  createdAt        DateTime       @default(now())
+  events           RequestEvent[]
+  payments         Payment[]
+  assignments      RunnerAssignment[]
+  disputes         Dispute[]
+
+  @@index([runnerId])
+  @@index([pickupLocationId])
+  @@index([dropLocationId])
+}
+
+model RequestEvent {
+  id        String        @id @default(cuid())
+  request   Request       @relation(fields: [requestId], references: [id])
+  requestId String
+  status    RequestStatus
+  meta      Json?
+  timestamp DateTime      @default(now())
+}
+
+model Payment {
+  id        String        @id @default(cuid())
+  request   Request       @relation(fields: [requestId], references: [id])
+  requestId String
+  user      User          @relation("UserPayments", fields: [userId], references: [id])
+  userId    String
+  amount    Decimal
+  status    PaymentStatus @default(INITIATED)
+  method    PaymentMethod @default(WALLET)
+  reference String?
+  createdAt DateTime      @default(now())
+}
+
+model WalletTransaction {
+  id           String   @id @default(cuid())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String
+  change       Decimal
+  balanceAfter Decimal
+  reason       String
+  createdAt    DateTime @default(now())
+}
+
+model Dispute {
+  id         String   @id @default(cuid())
+  request    Request  @relation(fields: [requestId], references: [id])
+  requestId  String
+  raisedBy   User     @relation("UserDisputes", fields: [raisedById], references: [id])
+  raisedById String
+  status     String   @default("open")
+  notes      String?
+  createdAt  DateTime @default(now())
+}
+
+model RunnerAssignment {
+  id         String   @id @default(cuid())
+  request    Request  @relation(fields: [requestId], references: [id])
+  requestId  String
+  runner     User     @relation("RunnerAssignments", fields: [runnerId], references: [id])
+  runnerId   String
+  score      Float
+  assignedAt DateTime @default(now())
+
+  @@unique([requestId, runnerId])
+}
+
+model OtpRequest {
+  id         String   @id @default(cuid())
+  contact    String
+  codeHash   String
+  expiresAt  DateTime
+  consumed   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([contact])
+}
