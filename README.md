@@ -45,3 +45,4 @@ Stop infrastructure with `npm run db:down`.
 2. `POST /auth/otp/verify` with the code to obtain `accessToken` and `refreshToken` JWTs tied to the user's role.
 3. Include `Authorization: Bearer <accessToken>` on protected requests; `POST /auth/refresh` swaps a valid refresh token for a new pair.
 4. `GET /auth/me` (requires a token) returns the authenticated profile so clients can gate student vs. runner vs. admin functionality.
+>>>>>>> cb7b307d8ebcbafbd8419d38d9eb693e19db30c5
